@@ -1,0 +1,27 @@
+import tkinter as tk
+from functools import partial
+def call_result(label_result, n1, n2):
+    num1 = (n1.get())
+    num2 = (n2.get())
+    result = int(num1)+int((num1*num2)/100)
+    result1= int(result)-int(num1)
+    label_result.config(text="Total final value is %d" % result)
+    labelResult1.config(text="The amount you paid to the govt is %d" % result1)
+
+root = tk.Tk()
+root.geometry('400x200+100+200')
+root.title('gst Calculator')
+number1 = tk.IntVar()
+number2 = tk.IntVar()
+labelTitle = tk.Label(root, text="gst Calculator").grid(row=0, column=2)
+labelNum1 = tk.Label(root, text="Enter taxable value").grid(row=1, column=0)
+labelNum2 = tk.Label(root, text="Enter total gst").grid(row=2, column=0)
+labelResult = tk.Label(root)
+labelResult1 = tk.Label(root)
+labelResult.grid(row=7, column=2)
+labelResult1.grid(row=8, column=2)
+entryNum1 = tk.Entry(root, textvariable=number1).grid(row=1, column=2)
+entryNum2 = tk.Entry(root, textvariable=number2).grid(row=2, column=2)
+call_result = partial(call_result, labelResult, number1, number2)
+buttonCal = tk.Button(root, text="Calculate", command=call_result).grid(row=3, column=0)
+root.mainloop()
